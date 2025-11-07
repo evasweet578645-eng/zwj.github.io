@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>榫卯·匠心-文化创意平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "SimHei", sans-serif;
+        }
+        
+        body {
+            background-color: #f5f1e6;
+            color: #5c3d2e;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background-color: #8b4513;
+            color: #f5f1e6;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #d9b38c;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            border: 1px solid #d9b38c;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-image {
+            height: 180px;
+            background-color: #d9b38c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #5c3d2e;
+            font-size: 3rem;
+            overflow: hidden;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #8b4513;
+        }
+        
+        .card p {
+            color: #7a5c3c;
+            margin-bottom: 15px;
+        }
+        
+        .card a {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: #8b4513;
+            color: #f5f1e6;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .card a:hover {
+            background-color: #a0522d;
+        }
+        
+        .contact-section {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #d9b38c;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 30px;
+        }
+        
+        .contact-image {
+            flex: 0 0 200px;
+            height: 200px;
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #5c3d2e;
+            font-size: 2rem;
+            overflow: hidden;
+        }
+        
+        .contact-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .contact-section h2 {
+            color: #8b4513;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .contact-item {
+            margin-bottom: 15px;
+        }
+        
+        .contact-item h3 {
+            color: #5c3d2e;
+            margin-bottom: 5px;
+        }
+        
+        /* 二维码区域样式 */
+        .qrcode-section {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            margin-top: 30px;
+            border: 1px solid #d9b38c;
+            text-align: center;
+        }
+        
+        .qrcode-section h2 {
+            color: #8b4513;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+        
+        .qrcode-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .qrcode-item {
+            flex: 0 0 200px;
+            text-align: center;
+        }
+        
+        .qrcode-img {
+            width: 150px;
+            height: 150px;
+            background-color: #f5f1e6;
+            border: 1px solid #d9b38c;
+            border-radius: 8px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8b4513;
+            font-size: 0.9rem;
+        }
+        
+        .qrcode-item p {
+            font-weight: bold;
+            color: #5c3d2e;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #7a5c3c;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-section {
+                flex-direction: column;
+            }
+            
+            .contact-info {
+                padding-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .qrcode-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>榫卯·匠心-文化创意平台</h1>
+            <p class="subtitle">传承中华优秀传统文化，创新非遗榫卯技艺的商业化路径</p>
+        </header>
+        
+        <div class="main-content">
+            <div class="card">
+                <div class="card-image">
+                    <!-- 榫卯知识库图片 -->
+                    <img src="images/榫卯知识库.png" alt="榫卯知识库">
+                </div>
+                <div class="card-content">
+                    <h3>榫卯知识库</h3>
+                    <p>深入了解榫卯结构的历史、原理与分类</p>
+                    <a href="榫卯知识库.html">进入知识库</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-image">
+                    <!-- 产品系列以及教学视频图片 -->
+                    <img src="images/产品介绍.png" alt="产品系列与教学视频">
+                </div>
+                <div class="card-content">
+                    <h3>产品系列与教学视频</h3>
+                    <p>探索榫卯产品系列，学习制作技巧</p>
+                    <a href="产品系列.html">查看产品</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-image">
+                    <!-- 产品文化图片 -->
+                    <img src="images/产品文化.png" alt="产品文化">
+                </div>
+                <div class="card-content">
+                    <h3>产品文化</h3>
+                    <p>感受榫卯技艺背后的文化内涵与哲学思想</p>
+                    <a href="产品文化.html">了解文化</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-image">
+                    <!-- 拼装社区图片 -->
+                    <img src="images/拼装社区.png" alt="拼装社区">
+                </div>
+                <div class="card-content">
+                    <h3>拼装社区</h3>
+                    <p>与榫卯爱好者交流经验，分享作品</p>
+                    <a href="拼装社区.html">加入社区</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image">
+                    <!-- 售后服务图片 -->
+                    <img src="images/售后服务.png" alt="售后服务">
+                </div>
+                <div class="card-content">
+                    <h3> 售后服务</h3>
+                    <p>如果对产品有疑问，联系我们</p>
+                    <a href="售后服务.html">在线客服</a>
+                </div>
+            </div> 
+
+            <div class="card">
+                <div class="card-image">
+                    <!-- 问卷填写图片 -->
+                    <img src="images/问卷填写.png" alt="问卷填写">
+                </div>
+                <div class="card-content">
+                    <h3> 问卷填写</h3>
+                    <p>请你对我们的产品提出宝贵的意见（有福利）</p>
+                    <a href="问卷填写.html">立即填写</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 新增二维码区域 -->
+        <div class="qrcode-section">
+            <h2>关注我们的平台</h2>
+            <div class="qrcode-container">
+                <div class="qrcode-item">
+                    <div class="qrcode-img">
+                        微信公众号二维码
+                    </div>
+                    <p>微信公众号平台</p>
+                </div>
+                <div class="qrcode-item">
+                    <div class="qrcode-img">
+                        淘宝店铺二维码
+                    </div>
+                    <p>淘宝官方店铺</p>
+                </div>
+                <div class="qrcode-item">
+                    <div class="qrcode-img">
+                        亚马逊店铺二维码
+                    </div>
+                    <p>亚马逊官方店铺</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-section">
+            <div class="contact-info">
+                <h2>联系我们</h2>
+                <div class="contact-item">
+                    <h3>项目企业</h3>
+                    <p>"榫卯·匠心"文化创意有限责任公司</p>
+                </div>
+                <div class="contact-item">
+                    <h3>主要业务</h3>
+                    <p>榫卯产品的开发以及国内外市场的销售</p>
+                </div>
+                <div class="contact-item">
+                    <h3>团队构成</h3>
+                    <p>大学生团队</p>
+                </div>
+            </div>
+            <div class="contact-image">
+                <!-- 公司图片 -->
+                <img src="images/企业.png" alt="公司形象">
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 榫卯·匠心-文化创意平台 版权所有</p>
+        </footer>
+    </div>
+</body>
+</html>
