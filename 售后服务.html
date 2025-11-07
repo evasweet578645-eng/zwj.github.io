@@ -1,0 +1,530 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>售后服务 - 榫卯·匠心-文化创意平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "SimHei", sans-serif;
+        }
+        
+        body {
+            background-color: #f5f1e6;
+            color: #5c3d2e;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background-color: #8b4513;
+            color: #f5f1e6;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #d9b38c;
+        }
+        
+        .back-btn {
+            position: absolute;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 10px 20px;
+            background-color: #d9b38c;
+            color: #5c3d2e;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .back-btn:hover {
+            background-color: #f5f1e6;
+        }
+        
+        /* 标签页导航 */
+        .tab-container {
+            margin-bottom: 30px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #d9b38c;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            background-color: #f5f1e6;
+            border: 1px solid #d9b38c;
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-right: 5px;
+        }
+        
+        .tab.active {
+            background-color: #8b4513;
+            color: #f5f1e6;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 0 8px 8px 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid #d9b38c;
+            border-top: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* 表单样式 */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #8b4513;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d9b38c;
+            border-radius: 4px;
+            background-color: #f5f1e6;
+            color: #5c3d2e;
+            font-size: 1rem;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            background-color: #8b4513;
+            color: #f5f1e6;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #a0522d;
+        }
+        
+        .btn-secondary {
+            background-color: #d9b38c;
+            color: #5c3d2e;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e6c9a8;
+        }
+        
+        /* 问题列表样式 */
+        .issue-list {
+            margin-top: 20px;
+        }
+        
+        .issue-item {
+            padding: 20px;
+            border: 1px solid #d9b38c;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            background-color: #fff;
+        }
+        
+        .issue-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .issue-title {
+            font-weight: bold;
+            color: #8b4513;
+            font-size: 1.2rem;
+        }
+        
+        .issue-meta {
+            color: #7a5c3c;
+            font-size: 0.9rem;
+        }
+        
+        .issue-status {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .status-pending {
+            background-color: #ffcc80;
+            color: #5c3d2e;
+        }
+        
+        .status-processing {
+            background-color: #81d4fa;
+            color: #5c3d2e;
+        }
+        
+        .status-resolved {
+            background-color: #a5d6a7;
+            color: #5c3d2e;
+        }
+        
+        .issue-actions {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #7a5c3c;
+        }
+        
+        .empty-state img {
+            max-width: 200px;
+            margin-bottom: 20px;
+            opacity: 0.7;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #7a5c3c;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .back-btn {
+                position: static;
+                margin-bottom: 15px;
+                display: inline-block;
+                transform: none;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                border-radius: 8px 8px 0 0;
+                margin-right: 0;
+                margin-bottom: 5px;
+            }
+            
+            .issue-header {
+                flex-direction: column;
+            }
+            
+            .issue-meta {
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="平台主页.html" class="back-btn" id="backBtn">返回首页</a>
+            <h1>售后服务</h1>
+            <p class="subtitle">榫卯匠心，服务贴心</p>
+        </header>
+        
+        <div class="tab-container">
+            <div class="tabs">
+                <div class="tab active" data-tab="customer">客户提交问题</div>
+                <div class="tab" data-tab="admin">官方管理</div>
+            </div>
+            
+            <!-- 客户提交问题页面 -->
+            <div class="tab-content active" id="customer-tab">
+                <h2>提交您的问题</h2>
+                <p>请详细描述您遇到的问题，我们将尽快为您解决</p>
+                
+                <form id="issueForm">
+                    <div class="form-group">
+                        <label for="customerName">您的姓名（别称）</label>
+                        <input type="text" id="customerName" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact">联系方式</label>
+                        <input type="text" id="contact" class="form-control" required placeholder="电话或邮箱">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="productType">产品类型</label>
+                        <select id="productType" class="form-control" required>
+                            <option value="">请选择产品类型</option>
+                            <option value="黄鹤楼-初涉之境">黄鹤楼-初涉之境</option>
+                            <option value="滕王阁-磨砺之境">滕王阁-磨砺之境</option>
+                            <option value="岳阳楼-超凡之境">岳阳楼-超凡之境</option>
+                            <option value="鹳雀楼-巅峰之境">鹳雀楼-巅峰之境</option>
+                            <option value="屏南-千乘桥">屏南-千乘桥</option>
+                            <option value="屏南-龙井桥">屏南-龙井桥</option>
+                            <option value="礼盒装产品">礼盒装产品</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="issueTitle">问题标题</label>
+                        <input type="text" id="issueTitle" class="form-control" required placeholder="简要描述问题">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="issueDescription">问题描述</label>
+                        <textarea id="issueDescription" class="form-control" required placeholder="请详细描述您遇到的问题..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">提交问题</button>
+                </form>
+                
+                <div id="successMessage" style="display: none; margin-top: 20px; padding: 15px; background-color: #a5d6a7; border-radius: 4px; color: #2e5c2e;">
+                    问题提交成功！我们的客服人员将尽快与您联系。
+                </div>
+            </div>
+            
+            <!-- 官方管理页面 -->
+            <div class="tab-content" id="admin-tab">
+                <h2>问题管理</h2>
+                <p>查看和处理客户提交的问题</p>
+                
+                <div class="issue-list" id="adminIssueList">
+                    <!-- 问题列表将通过JavaScript动态生成 -->
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 榫卯·匠心-文化创意平台 版权所有</p>
+        </footer>
+    </div>
+
+    <script>
+        // 初始化数据存储
+        function initializeStorage() {
+            if (!localStorage.getItem('serviceIssues')) {
+                localStorage.setItem('serviceIssues', JSON.stringify([]));
+            }
+        }
+        
+        // 获取所有问题
+        function getIssues() {
+            return JSON.parse(localStorage.getItem('serviceIssues')) || [];
+        }
+        
+        // 保存问题
+        function saveIssue(issue) {
+            const issues = getIssues();
+            issue.id = Date.now().toString();
+            issue.status = 'pending';
+            issue.createTime = new Date().toLocaleString();
+            issues.push(issue);
+            localStorage.setItem('serviceIssues', JSON.stringify(issues));
+            return issue;
+        }
+        
+        // 更新问题状态
+        function updateIssueStatus(id, status) {
+            const issues = getIssues();
+            const issueIndex = issues.findIndex(issue => issue.id === id);
+            if (issueIndex !== -1) {
+                issues[issueIndex].status = status;
+                issues[issueIndex].updateTime = new Date().toLocaleString();
+                localStorage.setItem('serviceIssues', JSON.stringify(issues));
+                return true;
+            }
+            return false;
+        }
+        
+        // 删除问题
+        function deleteIssue(id) {
+            const issues = getIssues();
+            const filteredIssues = issues.filter(issue => issue.id !== id);
+            localStorage.setItem('serviceIssues', JSON.stringify(filteredIssues));
+            return true;
+        }
+        
+        // 渲染管理员问题列表
+        function renderAdminIssueList() {
+            const issues = getIssues();
+            const container = document.getElementById('adminIssueList');
+            
+            if (issues.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <svg width="100" height="100" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z" stroke="#7a5c3c" stroke-width="2"/>
+                            <path d="M12 8V12" stroke="#7a5c3c" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="12" cy="15" r="1" fill="#7a5c3c"/>
+                        </svg>
+                        <h3>暂无问题反馈</h3>
+                        <p>客户提交的问题将显示在这里</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '';
+            issues.forEach(issue => {
+                let statusClass = 'status-pending';
+                let statusText = '待处理';
+                
+                if (issue.status === 'processing') {
+                    statusClass = 'status-processing';
+                    statusText = '处理中';
+                } else if (issue.status === 'resolved') {
+                    statusClass = 'status-resolved';
+                    statusText = '已解决';
+                }
+                
+                html += `
+                    <div class="issue-item">
+                        <div class="issue-header">
+                            <div class="issue-title">${issue.issueTitle}</div>
+                            <div class="issue-meta">
+                                <span class="issue-status ${statusClass}">${statusText}</span>
+                                <span>${issue.createTime}</span>
+                            </div>
+                        </div>
+                        <div class="issue-details">
+                            <p><strong>客户姓名：</strong>${issue.customerName}</p>
+                            <p><strong>联系方式：</strong>${issue.contact}</p>
+                            <p><strong>产品类型：</strong>${issue.productType}</p>
+                            <p><strong>问题描述：</strong>${issue.issueDescription}</p>
+                        </div>
+                        <div class="issue-actions">
+                            <select class="form-control status-select" data-id="${issue.id}" style="width: auto;">
+                                <option value="pending" ${issue.status === 'pending' ? 'selected' : ''}>待处理</option>
+                                <option value="processing" ${issue.status === 'processing' ? 'selected' : ''}>处理中</option>
+                                <option value="resolved" ${issue.status === 'resolved' ? 'selected' : ''}>已解决</option>
+                            </select>
+                            <button class="btn btn-secondary delete-btn" data-id="${issue.id}">删除</button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+            
+            // 添加状态更改事件监听
+            document.querySelectorAll('.status-select').forEach(select => {
+                select.addEventListener('change', function() {
+                    const id = this.getAttribute('data-id');
+                    const status = this.value;
+                    if (updateIssueStatus(id, status)) {
+                        renderAdminIssueList();
+                    }
+                });
+            });
+            
+            // 添加删除按钮事件监听
+            document.querySelectorAll('.delete-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    if (confirm('确定要删除这个问题吗？')) {
+                        if (deleteIssue(id)) {
+                            renderAdminIssueList();
+                        }
+                    }
+                });
+            });
+        }
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeStorage();
+            
+            // 标签页切换
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // 移除所有active类
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    
+                    // 添加active类到当前标签
+                    this.classList.add('active');
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(`${tabId}-tab`).classList.add('active');
+                    
+                    // 如果是管理员标签，刷新问题列表
+                    if (tabId === 'admin') {
+                        renderAdminIssueList();
+                    }
+                });
+            });
+            
+            // 表单提交
+            document.getElementById('issueForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const issue = {
+                    customerName: document.getElementById('customerName').value,
+                    contact: document.getElementById('contact').value,
+                    productType: document.getElementById('productType').value,
+                    issueTitle: document.getElementById('issueTitle').value,
+                    issueDescription: document.getElementById('issueDescription').value
+                };
+                
+                saveIssue(issue);
+                
+                // 显示成功消息
+                document.getElementById('successMessage').style.display = 'block';
+                
+                // 重置表单
+                this.reset();
+                
+                // 3秒后隐藏成功消息
+                setTimeout(() => {
+                    document.getElementById('successMessage').style.display = 'none';
+                }, 3000);
+            });
+            
+            // 隐藏管理员页面的返回按钮
+            document.getElementById('backBtn').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品系列 - 榫卯·匠心-文化创意平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "SimHei", sans-serif;
+        }
+        
+        body {
+            background-color: #f5f1e6;
+            color: #5c3d2e;
+            line-height: 1.6;
+        }
+        
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* 返回首页按钮 */
+        .back-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #8b4513;
+            color: #f5f1e6;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+        
+        .back-home:hover {
+            background-color: #a0522d;
+        }
+        
+        /* 左侧导航栏样式 */
+        .sidebar {
+            width: 250px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            padding: 20px;
+            margin-right: 30px;
+            border: 1px solid #d9b38c;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+        
+        .series-title {
+            color: #8b4513;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #d9b38c;
+        }
+        
+        .product-list {
+            list-style: none;
+        }
+        
+        .product-list li {
+            margin-bottom: 10px;
+        }
+        
+        .product-list a {
+            display: block;
+            padding: 10px 15px;
+            color: #5c3d2e;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .product-list a:hover, .product-list a.active {
+            background-color: #d9b38c;
+            color: #fff;
+        }
+        
+        /* 右侧内容区样式 */
+        .content {
+            flex: 1;
+        }
+        
+        .product-section {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid #d9b38c;
+            scroll-margin-top: 20px;
+        }
+        
+        .product-title {
+            color: #8b4513;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #d9b38c;
+        }
+        
+        .product-images {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            overflow-x: auto;
+        }
+        
+        .product-image {
+            flex: 0 0 300px;
+            height: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .section-title {
+            color: #8b4513;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #d9b38c;
+        }
+        
+        .product-price {
+            font-size: 1.5rem;
+            color: #a0522d;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .video-section {
+            margin-top: 20px;
+        }
+        
+        .video-container {
+            width: 100%;
+            max-width: 600px;
+            height: 340px;
+            background-color: #f5f1e6;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+            border: 1px solid #d9b38c;
+        }
+        
+        .video-placeholder {
+            text-align: center;
+            color: #8b4513;
+        }
+        
+        .video-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 20px;
+            background-color: #8b4513;
+            color: #f5f1e6;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .video-link:hover {
+            background-color: #a0522d;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 20px;
+                position: static;
+            }
+            
+            .product-images {
+                flex-direction: column;
+            }
+            
+            .product-image {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 返回首页按钮 -->
+    <a href="平台主页.html" class="back-home">返回首页</a>
+    
+    <div class="container">
+        <!-- 左侧导航栏 -->
+        <div class="sidebar">
+            <h2 class="series-title">榫卯之谜---孔明系列</h2>
+            <ul class="product-list">
+                <li><a href="#kongming-huanghe" class="active">黄鹤楼-初涉之境</a></li>
+                <li><a href="#kongming-tengwang">滕王阁-磨砺之境</a></li>
+                <li><a href="#kongming-yueyang">岳阳楼-超凡之境</a></li>
+                <li><a href="#kongming-guanque">鹳雀楼-巅峰之境</a></li>
+                <li><a href="#kongming-gift">江南四大名楼礼盒装</a></li>
+            </ul>
+            
+            <h2 class="series-title">榫卯之谜---古桥系列</h2>
+            <ul class="product-list">
+                <li><a href="#bridge-wanan">屏南-万安桥</a></li>
+                <li><a href="#bridge-qiansheng">屏南-千乘桥</a></li>
+                <li><a href="#bridge-longjing">屏南-龙井桥</a></li>
+                <li><a href="#bridge-gift">屏南木廊桥礼盒装</a></li>
+            </ul>
+        </div>
+        
+        <!-- 右侧内容区 - 长页面形式 -->
+        <div class="content">
+            <!-- 黄鹤楼产品 -->
+            <section id="kongming-huanghe" class="product-section">
+                <h1 class="product-title">黄鹤楼-初涉之境</h1>
+                
+                <div class="product-images">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/8b4513/ffffff?text=黄鹤楼产品图1" alt="黄鹤楼产品图片1">
+                    </div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/a0522d/ffffff?text=黄鹤楼产品图2" alt="黄鹤楼产品图片2">
+                    </div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/d2691e/ffffff?text=黄鹤楼产品图3" alt="黄鹤楼产品图片3">
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品介绍</h2>
+                    <p>黄鹤楼系列是"榫卯之谜---孔明"系列中的入门级产品，专为初次接触榫卯技艺的爱好者设计。该系列包含三通、十字架、六通、六片拼等五种基础榫卯结构，难度适中，适合初学者快速上手，感受榫卯结构的巧妙之处。</p>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品价格</h2>
+                    <p class="product-price">国内定价：30元 | 国际定价：15美元</p>
+                </div>
+                
+                <div class="video-section">
+                    <h2 class="section-title">教学视频</h2>
+                    <div class="video-container">
+                        <div class="video-placeholder">
+                            <p>黄鹤楼系列产品教学视频</p>
+                            <a href="videos/huanghe_tutorial.mp4" class="video-link">观看教学视频</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品文化</h2>
+                    <p>黄鹤楼位于湖北省武汉市长江南岸的蛇山之巅，享有"天下江山第一楼"的美誉。始建于三国时期，历代屡毁屡建，现存建筑为1981年重建。黄鹤楼不仅是中国古代建筑艺术的杰出代表，更是文人墨客吟咏的灵感源泉，唐代诗人崔颢的《黄鹤楼》诗使其名扬天下。</p>
+                    <p>本产品以黄鹤楼为设计灵感，将传统建筑元素融入榫卯结构，让用户在拼装过程中感受中国古代建筑的独特魅力与文化底蕴。</p>
+                </div>
+            </section>
+            
+            <!-- 滕王阁产品 -->
+            <section id="kongming-tengwang" class="product-section">
+                <h1 class="product-title">滕王阁-磨砺之境</h1>
+                
+                <div class="product-images">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/8b4513/ffffff?text=滕王阁产品图1" alt="滕王阁产品图片1">
+                    </div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/a0522d/ffffff?text=滕王阁产品图2" alt="滕王阁产品图片2">
+                    </div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/d2691e/ffffff?text=滕王阁产品图3" alt="滕王阁产品图片3">
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品介绍</h2>
+                    <p>滕王阁系列是"榫卯之谜---孔明"系列中的中级产品，包含舒汉、六根、九通、墙角、鲁班球等五种榫卯结构，难度适中偏高，适合有一定榫卯基础的爱好者挑战。</p>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品价格</h2>
+                    <p class="product-price">国内定价：35元 | 国际定价：16美元</p>
+                </div>
+                
+                <div class="video-section">
+                    <h2 class="section-title">教学视频</h2>
+                    <div class="video-container">
+                        <div class="video-placeholder">
+                            <p>滕王阁系列产品教学视频</p>
+                            <a href="videos/tengwang_tutorial.mp4" class="video-link">观看教学视频</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品文化</h2>
+                    <p>滕王阁位于江西省南昌市赣江东岸，始建于唐永徽四年（653年），因初唐诗人王勃的《滕王阁序》而闻名于世，与黄鹤楼、岳阳楼并称为"江南三大名楼"。滕王阁是古代士人文化的重要象征，体现了中国古代文人的雅致与情怀。</p>
+                    <p>本产品以滕王阁为设计灵感，将文人雅士的文化气息融入榫卯结构，让用户在拼装过程中感受中国古代文人的精神世界。</p>
+                </div>
+            </section>
+            
+            <!-- 岳阳楼产品 -->
+            <section id="kongming-yueyang" class="product-section">
+                <h1 class="product-title">岳阳楼-超凡之境</h1>
+                
+                <div class="product-images">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/8b4513/ffffff?text=岳阳楼产品图1" alt="岳阳楼产品图片1">
+                    </div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/a0522d/ffffff?text=岳阳楼产品图2" alt="岳阳楼产品图片2">
+                    </div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/d2691e/ffffff?text=岳阳楼产品图3" alt="岳阳楼产品图片3">
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品介绍</h2>
+                    <p>岳阳楼系列是"榫卯之谜---孔明"系列中的高级产品，包含梅花锁、十五通、八面玲珑、九根、中字锁等五种复杂榫卯结构，难度较高，适合有丰富榫卯经验的爱好者挑战。</p>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品价格</h2>
+                    <p class="product-price">国内定价：40元 | 国际定价：17美元</p>
+                </div>
+                
+                <div class="video-section">
+                    <h2 class="section-title">教学视频</h2>
+                    <div class="video-container">
+                        <div class="video-placeholder">
+                            <p>岳阳楼系列产品教学视频</p>
+                            <a href="videos/yueyang_tutorial.mp4" class="video-link">观看教学视频</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品文化</h2>
+                    <p>岳阳楼位于湖南省岳阳市古城西门城墙之上，下瞰洞庭，前望君山，自古有"洞庭天下水，岳阳天下楼"之美誉。岳阳楼始建于东汉建安二十年（215年），历代屡加重修，现存建筑沿袭清光绪六年（1880年）重建时的形制与格局。北宋范仲淹的《岳阳楼记》使岳阳楼著称于世。</p>
+                    <p>本产品以岳阳楼为设计灵感，将湖湘文化的深厚底蕴融入榫卯结构，让用户在拼装过程中感受"先天下之忧而忧，后天下之乐而乐"的家国情怀。</p>
+                </div>
+            </section>
+            
+            <!-- 鹳雀楼产品 -->
+            <section id="kongming-guanque" class="product-section">
+                <h1 class="product-title">鹳雀楼-巅峰之境</h1>
+                
+                <div class="product-images">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/8b4513/ffffff?text=鹳雀楼产品图1" alt="鹳雀楼产品图片1">
+                    </div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/a0522d/ffffff?text=鹳雀楼产品图2" alt="鹳雀楼产品图片2">
+                    </div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/d2691e/ffffff?text=鹳雀楼产品图3" alt="鹳雀楼产品图片3">
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品介绍</h2>
+                    <p>鹳雀楼系列是"榫卯之谜---孔明"系列中的顶级产品，包含二十四锁、笼中取球、井字锁、回首等四种极其复杂的榫卯结构，难度极高，适合榫卯技艺大师级爱好者挑战。</p>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品价格</h2>
+                    <p class="product-price">国内定价：45元 | 国际定价：18美元</p>
+                </div>
+                
+                <div class="video-section">
+                    <h2 class="section-title">教学视频</h2>
+                    <div class="video-container">
+                        <div class="video-placeholder">
+                            <p>鹳雀楼系列产品教学视频</p>
+                            <a href="videos/guanque_tutorial.mp4" class="video-link">观看教学视频</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品文化</h2>
+                    <p>鹳雀楼位于山西省永济市蒲州古城西面的黄河东岸，始建于北周时期（约在557-580年间），因时有鹳雀栖其上而得名。鹳雀楼结构奇巧，周围风景秀丽，唐宋之际文人学士登楼赏景留下许多不朽诗篇，其中王之涣的《登鹳雀楼》最为著名。</p>
+                    <p>本产品以鹳雀楼为设计灵感，将"欲穷千里目，更上一层楼"的进取精神融入榫卯结构，让用户在拼装过程中感受不断超越自我的精神追求。</p>
+                </div>
+            </section>
+            
+            <!-- 江南四大名楼礼盒装 -->
+            <section id="kongming-gift" class="product-section">
+                <h1 class="product-title">江南四大名楼礼盒装</h1>
+                
+                <div class="product-images">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/8b4513/ffffff?text=礼盒外观" alt="礼盒外观">
+                    </div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/a0522d/ffffff?text=礼盒内部" alt="礼盒内部">
+                    </div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/d2691e/ffffff?text=全套产品" alt="全套产品">
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品介绍</h2>
+                    <p>江南四大名楼礼盒装是"榫卯之谜---孔明"系列的完整收藏版，包含黄鹤楼、滕王阁、岳阳楼、鹳雀楼四个系列的全部18种榫卯结构产品，是榫卯爱好者的终极收藏。</p>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品价格</h2>
+                    <p class="product-price">国内定价：120元 | 国际定价：50美元</p>
+                </div>
+                
+                <div class="video-section">
+                    <h2 class="section-title">教学视频</h2>
+                    <div class="video-container">
+                        <div class="video-placeholder">
+                            <p>江南四大名楼礼盒装教学视频</p>
+                            <a href="videos/gift_tutorial.mp4" class="video-link">观看教学视频</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品文化</h2>
+                    <p>江南四大名楼是中国古代建筑艺术的杰出代表，承载着丰富的历史文化内涵。黄鹤楼的壮丽、滕王阁的雅致、岳阳楼的雄浑、鹳雀楼的奇巧，共同构成了中国古代楼阁建筑的多元风貌。</p>
+                    <p>本礼盒装将四大名楼的建筑特色与文化内涵完美融合，通过榫卯技艺展现中国古代建筑的智慧与美学，是收藏与馈赠的绝佳选择。</p>
+                </div>
+            </section>
+            
+            <!-- 万安桥产品 -->
+            <section id="bridge-wanan" class="product-section">
+                <h1 class="product-title">屏南-万安桥</h1>
+                
+                <div class="product-images">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/8b4513/ffffff?text=万安桥全景" alt="万安桥全景">
+                    </div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/a0522d/ffffff?text=万安桥细节" alt="万安桥细节">
+                    </div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/d2691e/ffffff?text=万安桥模型" alt="万安桥模型">
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品介绍</h2>
+                    <p>万安桥系列是"榫卯之谜---古桥"系列的代表产品之一，以福建屏南万安桥为原型，通过精巧的榫卯结构再现这座古代木拱廊桥的建筑奇迹。</p>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品价格</h2>
+                    <p class="product-price">国内定价：50元 | 国际定价：20美元</p>
+                </div>
+                
+                <div class="video-section">
+                    <h2 class="section-title">教学视频</h2>
+                    <div class="video-container">
+                        <div class="video-placeholder">
+                            <p>万安桥系列产品教学视频</p>
+                            <a href="videos/wanan_tutorial.mp4" class="video-link">观看教学视频</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品文化</h2>
+                    <p>万安桥位于福建省屏南县长桥镇长桥村，是中国现存最长的木拱廊桥，始建于北宋元祐五年（1090年），历史上多次毁建，现桥为1932年重建。万安桥为五墩六孔木拱廊桥，桥长98.2米，宽4.7米，不用一钉一铁，只凭椽靠椽、桁嵌桁，衔接严密，结构稳固。</p>
+                    <p>本产品以万安桥为设计原型，通过榫卯结构再现这座"桥中瑰宝"的建筑智慧，让用户在拼装过程中感受中国古代桥梁工匠的高超技艺。</p>
+                </div>
+            </section>
+            
+            <!-- 千乘桥产品 -->
+            <section id="bridge-qiansheng" class="product-section">
+                <h1 class="product-title">屏南-千乘桥</h1>
+                
+                <div class="product-images">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/8b4513/ffffff?text=千乘桥全景" alt="千乘桥全景">
+                    </div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/a0522d/ffffff?text=千乘桥细节" alt="千乘桥细节">
+                    </div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/d2691e/ffffff?text=千乘桥模型" alt="千乘桥模型">
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品介绍</h2>
+                    <p>千乘桥系列是"榫卯之谜---古桥"系列的重要产品，以福建屏南千乘桥为原型，通过精巧的榫卯结构再现这座古代木拱廊桥的独特魅力。</p>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品价格</h2>
+                    <p class="product-price">国内定价：50元 | 国际定价：20美元</p>
+                </div>
+                
+                <div class="video-section">
+                    <h2 class="section-title">教学视频</h2>
+                    <div class="video-container">
+                        <div class="video-placeholder">
+                            <p>千乘桥系列产品教学视频</p>
+                            <a href="videos/qiansheng_tutorial.mp4" class="video-link">观看教学视频</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品文化</h2>
+                    <p>千乘桥位于福建省屏南县棠口乡棠口村，始建于南宋理宗年间，明末清初毁于火患，清康熙五十四年（1715年）重建，嘉庆十四年（1809年）被大水冲毁，嘉庆二十五年（1820年）再度重建。千乘桥为单孔跨度最大的木拱廊桥之一，桥长62.7米，宽4.9米，一墩二孔，呈八字形结构。</p>
+                    <p>本产品以千乘桥为设计原型，通过榫卯结构再现这座古桥的独特造型与结构特点，让用户在拼装过程中感受中国古代桥梁建筑的多样性与创造性。</p>
+                </div>
+            </section>
+            
+            <!-- 龙井桥产品 -->
+            <section id="bridge-longjing" class="product-section">
+                <h1 class="product-title">屏南-龙井桥</h1>
+                
+                <div class="product-images">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/8b4513/ffffff?text=龙井桥全景" alt="龙井桥全景">
+                    </div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/a0522d/ffffff?text=龙井桥细节" alt="龙井桥细节">
+                    </div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/d2691e/ffffff?text=龙井桥模型" alt="龙井桥模型">
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品介绍</h2>
+                    <p>龙井桥系列是"榫卯之谜---古桥"系列的特列产品，以福建屏南龙井桥为原型，通过精巧的榫卯结构再现这座被誉为"东南第一险桥"的古代木拱廊桥。</p>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品价格</h2>
+                    <p class="product-price">国内定价：50元 | 国际定价：20美元</p>
+                </div>
+                
+                <div class="video-section">
+                    <h2 class="section-title">教学视频</h2>
+                    <div class="video-container">
+                        <div class="video-placeholder">
+                            <p>龙井桥系列产品教学视频</p>
+                            <a href="videos/longjing_tutorial.mp4" class="video-link">观看教学视频</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品文化</h2>
+                    <p>龙井桥位于福建省屏南县寿山乡白玉村至黛溪镇康里村的古道中，建于明代，清乾隆年间重修。龙井桥地处险要，横跨于深涧之上，桥下溪流奔涌，地势险峻，被中国土木工程学家茅以升称为"东南第一险桥"。龙井桥为单孔木拱廊桥，桥长33.5米，宽4.5米，离水面高22米。</p>
+                    <p>本产品以龙井桥为设计原型，通过榫卯结构再现这座险桥的雄姿，让用户在拼装过程中感受中国古代工匠在险峻环境中建造桥梁的勇气与智慧。</p>
+                </div>
+            </section>
+            
+            <!-- 屏南木廊桥礼盒装 -->
+            <section id="bridge-gift" class="product-section">
+                <h1 class="product-title">屏南木廊桥礼盒装</h1>
+                
+                <div class="product-images">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/8b4513/ffffff?text=礼盒外观" alt="礼盒外观">
+                    </div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/a0522d/ffffff?text=礼盒内部" alt="礼盒内部">
+                    </div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x200/d2691e/ffffff?text=全套产品" alt="全套产品">
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品介绍</h2>
+                    <p>屏南木廊桥礼盒装是"榫卯之谜---古桥"系列的完整收藏版，包含万安桥、千乘桥、龙井桥三座著名木拱廊桥的榫卯模型，是古桥爱好者和榫卯收藏家的珍品。</p>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品价格</h2>
+                    <p class="product-price">国内定价：120元 | 国际定价：50美元</p>
+                </div>
+                
+                <div class="video-section">
+                    <h2 class="section-title">教学视频</h2>
+                    <div class="video-container">
+                        <div class="video-placeholder">
+                            <p>屏南木廊桥礼盒装教学视频</p>
+                            <a href="videos/bridge_gift_tutorial.mp4" class="video-link">观看教学视频</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="section-title">产品文化</h2>
+                    <p>屏南木拱廊桥是中国传统木构桥梁的活化石，集中体现了中国古代工匠在木结构桥梁建设上的高超技艺。万安桥的长、千乘桥的巧、龙井桥的险，共同构成了屏南木拱廊桥的多元风貌，是世界桥梁史上的瑰宝。</p>
+                    <p>本礼盒装将三座著名木拱廊桥的建筑特色与文化价值完美融合，通过榫卯技艺展现中国古代桥梁建筑的智慧与美学，是收藏与研究的绝佳选择。</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // 导航高亮和滚动功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('.product-list a');
+            const sections = document.querySelectorAll('.product-section');
+            
+            // 点击导航链接
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // 移除所有active类
+                    links.forEach(l => l.classList.remove('active'));
+                    
+                    // 添加active类到当前链接
+                    this.classList.add('active');
+                    
+                    // 滚动到对应部分
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+            
+            // 滚动时高亮当前部分
+            function highlightCurrentSection() {
+                let currentSectionId = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionHeight = section.clientHeight;
+                    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                        currentSectionId = '#' + section.id;
+                    }
+                });
+                
+                links.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === currentSectionId) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            // 监听滚动事件
+            window.addEventListener('scroll', highlightCurrentSection);
+            
+            // 初始化高亮
+            highlightCurrentSection();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>问卷填写 - 榫卯·匠心-文化创意平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "SimHei", sans-serif;
+        }
+        
+        body {
+            background-color: #f5f1e6;
+            color: #5c3d2e;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background-color: #8b4513;
+            color: #f5f1e6;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #d9b38c;
+        }
+        
+        .back-btn {
+            position: absolute;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 10px 20px;
+            background-color: #d9b38c;
+            color: #5c3d2e;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .back-btn:hover {
+            background-color: #f5f1e6;
+        }
+        
+        /* 问卷样式 */
+        .survey-intro {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid #d9b38c;
+        }
+        
+        .survey-intro h2 {
+            color: #8b4513;
+            margin-bottom: 15px;
+        }
+        
+        .survey-form {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid #d9b38c;
+            margin-bottom: 30px;
+        }
+        
+        .question-group {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #d9b38c;
+        }
+        
+        .question-group:last-child {
+            border-bottom: none;
+        }
+        
+        .question-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #8b4513;
+            font-weight: bold;
+        }
+        
+        .question-required {
+            color: #c44;
+        }
+        
+        .options-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .option-item {
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .option-item input {
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+        
+        .option-label {
+            cursor: pointer;
+        }
+        
+        .text-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d9b38c;
+            border-radius: 4px;
+            background-color: #f5f1e6;
+            color: #5c3d2e;
+            font-size: 1rem;
+        }
+        
+        textarea.text-input {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #8b4513;
+            color: #f5f1e6;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+        
+        .submit-btn:hover {
+            background-color: #a0522d;
+        }
+        
+        /* 兑换码显示区域 */
+        .reward-section {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid #d9b38c;
+            margin-top: 30px;
+        }
+        
+        .reward-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #8b4513;
+        }
+        
+        .reward-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #8b4513;
+        }
+        
+        .reward-code {
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+            color: #8b4513;
+            background-color: #f5f1e6;
+            padding: 15px 30px;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 20px 0;
+            border: 2px dashed #d9b38c;
+        }
+        
+        .reward-note {
+            color: #7a5c3c;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #7a5c3c;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .back-btn {
+                position: static;
+                margin-bottom: 15px;
+                display: inline-block;
+                transform: none;
+            }
+            
+            .reward-code {
+                font-size: 1.8rem;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="平台主页.html" class="back-btn">返回首页</a>
+            <h1>问卷填写</h1>
+            <p class="subtitle">您的宝贵意见将帮助我们做得更好</p>
+        </header>
+        
+        <div class="survey-intro">
+            <h2>榫卯·匠心产品体验问卷</h2>
+            <p>感谢您选择榫卯·匠心产品！请花费几分钟时间填写此问卷，帮助我们改进产品和服务。</p>
+            <p>完成问卷后，您将获得一个专属兑换码，可用于领取精美奖品！</p>
+        </div>
+        
+        <form id="surveyForm" class="survey-form">
+            <!-- 基本信息 -->
+            <div class="question-group">
+                <div class="question-title">1. 您属于以下哪类客户群体？<span class="question-required">*</span></div>
+                <div class="options-group">
+                    <div class="option-item">
+                        <input type="radio" id="customer1" name="customerType" value="亲子家庭" required>
+                        <label for="customer1" class="option-label">亲子家庭</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="customer2" name="customerType" value="文化爱好者">
+                        <label for="customer2" class="option-label">文化爱好者</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="customer3" name="customerType" value="青年潮玩爱好者">
+                        <label for="customer3" class="option-label">青年潮玩爱好者</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="customer4" name="customerType" value="教育机构">
+                        <label for="customer4" class="option-label">教育机构</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="customer5" name="customerType" value="其他">
+                        <label for="customer5" class="option-label">其他</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 产品体验 -->
+            <div class="question-group">
+                <div class="question-title">2. 您购买过我们的哪些产品？<span class="question-required">*</span></div>
+                <div class="options-group">
+                    <div class="option-item">
+                        <input type="checkbox" id="product1" name="products" value="黄鹤楼-初涉之境">
+                        <label for="product1" class="option-label">黄鹤楼-初涉之境系列</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="checkbox" id="product2" name="products" value="滕王阁-磨砺之域">
+                        <label for="product2" class="option-label">滕王阁-磨砺之域系列</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="checkbox" id="product3" name="products" value="岳阳楼-超凡之境">
+                        <label for="product3" class="option-label">岳阳楼-超凡之境系列</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="checkbox" id="product4" name="products" value="鹳雀楼-巅峰之境">
+                        <label for="product4" class="option-label">鹳雀楼-巅峰之境系列</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="checkbox" id="product5" name="products" value="屏南-万安桥">
+                        <label for="product5" class="option-label">屏南-万安桥系列</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="checkbox" id="product6" name="products" value="屏南-千乘桥">
+                        <label for="product6" class="option-label">屏南-千乘桥系列</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="checkbox" id="product7" name="products" value="屏南-龙井桥">
+                        <label for="product7" class="option-label">屏南-龙井桥系列</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="checkbox" id="product8" name="products" value="礼盒装">
+                        <label for="product8" class="option-label">礼盒装产品</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 满意度评价 -->
+            <div class="question-group">
+                <div class="question-title">3. 您对产品外观设计的满意度如何？<span class="question-required">*</span></div>
+                <div class="options-group">
+                    <div class="option-item">
+                        <input type="radio" id="design1" name="designSatisfaction" value="非常满意" required>
+                        <label for="design1" class="option-label">非常满意</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="design2" name="designSatisfaction" value="满意">
+                        <label for="design2" class="option-label">满意</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="design3" name="designSatisfaction" value="一般">
+                        <label for="design3" class="option-label">一般</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="design4" name="designSatisfaction" value="不满意">
+                        <label for="design4" class="option-label">不满意</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="design5" name="designSatisfaction" value="非常不满意">
+                        <label for="design5" class="option-label">非常不满意</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 材料评价 -->
+            <div class="question-group">
+                <div class="question-title">4. 您对PLA环保材料的满意度如何？<span class="question-required">*</span></div>
+                <div class="options-group">
+                    <div class="option-item">
+                        <input type="radio" id="material1" name="materialSatisfaction" value="非常满意" required>
+                        <label for="material1" class="option-label">非常满意 - 环保材料是重要购买因素</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="material2" name="materialSatisfaction" value="满意">
+                        <label for="material2" class="option-label">满意 - 环保材料是加分项</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="material3" name="materialSatisfaction" value="一般">
+                        <label for="material3" class="option-label">一般 - 对材料没有特别关注</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="material4" name="materialSatisfaction" value="不满意">
+                        <label for="material4" class="option-label">不满意 - 更喜欢传统木质材料</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 文化传播 -->
+            <div class="question-group">
+                <div class="question-title">5. 您认为我们的产品在传播榫卯文化方面的效果如何？<span class="question-required">*</span></div>
+                <div class="options-group">
+                    <div class="option-item">
+                        <input type="radio" id="culture1" name="cultureEffect" value="非常好" required>
+                        <label for="culture1" class="option-label">非常好 - 让我深入了解了榫卯技艺</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="culture2" name="cultureEffect" value="好">
+                        <label for="culture2" class="option-label">好 - 增强了对传统文化的兴趣</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="culture3" name="cultureEffect" value="一般">
+                        <label for="culture3" class="option-label">一般 - 有文化元素但不够深入</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="culture4" name="cultureEffect" value="差">
+                        <label for="culture4" class="option-label">差 - 文化传播效果不明显</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 购买渠道 -->
+            <div class="question-group">
+                <div class="question-title">6. 您是通过什么渠道了解/购买我们的产品的？</div>
+                <div class="options-group">
+                    <div class="option-item">
+                        <input type="checkbox" id="channel1" name="channels" value="天猫">
+                        <label for="channel1" class="option-label">天猫</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="checkbox" id="channel2" name="channels" value="京东">
+                        <label for="channel2" class="option-label">京东</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="checkbox" id="channel3" name="channels" value="抖音">
+                        <label for="channel3" class="option-label">抖音</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="checkbox" id="channel4" name="channels" value="小红书">
+                        <label for="channel4" class="option-label">小红书</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="checkbox" id="channel5" name="channels" value="B站">
+                        <label for="channel5" class="option-label">B站</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="checkbox" id="channel6" name="channels" value="亚马逊">
+                        <label for="channel6" class="option-label">亚马逊</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="checkbox" id="channel7" name="channels" value="TikTok Shop">
+                        <label for="channel7" class="option-label">TikTok Shop</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="checkbox" id="channel8" name="channels" value="线下门店">
+                        <label for="channel8" class="option-label">线下门店/景区商店</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="checkbox" id="channel9" name="channels" value="朋友推荐">
+                        <label for="channel9" class="option-label">朋友推荐</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 价格评价 -->
+            <div class="question-group">
+                <div class="question-title">7. 您认为我们的产品定价如何？<span class="question-required">*</span></div>
+                <div class="options-group">
+                    <div class="option-item">
+                        <input type="radio" id="price1" name="priceOpinion" value="非常合理" required>
+                        <label for="price1" class="option-label">非常合理 - 物超所值</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="price2" name="priceOpinion" value="合理">
+                        <label for="price2" class="option-label">合理 - 价格与价值匹配</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="price3" name="priceOpinion" value="偏高">
+                        <label for="price3" class="option-label">偏高 - 但可以接受</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="price4" name="priceOpinion" value="过高">
+                        <label for="price4" class="option-label">过高 - 难以接受</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 推荐意愿 -->
+            <div class="question-group">
+                <div class="question-title">8. 您有多大可能向朋友或家人推荐我们的产品？<span class="question-required">*</span></div>
+                <div class="options-group">
+                    <div class="option-item">
+                        <input type="radio" id="recommend1" name="recommendation" value="10" required>
+                        <label for="recommend1" class="option-label">10分 - 一定会推荐</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="recommend2" name="recommendation" value="9">
+                        <label for="recommend2" class="option-label">9分</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="recommend3" name="recommendation" value="8">
+                        <label for="recommend3" class="option-label">8分</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="recommend4" name="recommendation" value="7">
+                        <label for="recommend4" class="option-label">7分</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="recommend5" name="recommendation" value="6">
+                        <label for="recommend5" class="option-label">6分</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="recommend6" name="recommendation" value="5">
+                        <label for="recommend6" class="option-label">5分 - 可能会推荐</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="recommend7" name="recommendation" value="4">
+                        <label for="recommend7" class="option-label">4分</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="recommend8" name="recommendation" value="3">
+                        <label for="recommend8" class="option-label">3分</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="recommend9" name="recommendation" value="2">
+                        <label for="recommend9" class="option-label">2分</label>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" id="recommend10" name="recommendation" value="1">
+                        <label for="recommend10" class="option-label">1分 - 完全不会推荐</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 改进建议 -->
+            <div class="question-group">
+                <div class="question-title">9. 您对我们的产品有什么改进建议？</div>
+                <textarea class="text-input" name="suggestions" placeholder="请在此处写下您的宝贵建议..."></textarea>
+            </div>
+            
+            <!-- 其他意见 -->
+            <div class="question-group">
+                <div class="question-title">10. 您希望我们未来推出什么样的新产品？</div>
+                <textarea class="text-input" name="newProducts" placeholder="请告诉我们您的想法..."></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">提交问卷</button>
+        </form>
+        
+        <!-- 兑换码显示区域 -->
+        <div class="reward-section" id="rewardSection">
+            <div class="reward-icon">🎁</div>
+            <h2 class="reward-title">感谢您完成问卷！</h2>
+            <p>您的宝贵意见将帮助我们改进产品和服务</p>
+            <div class="reward-code" id="rewardCode">SM2024-XXXXXX</div>
+            <p>此编码可以兑换奖品！</p>
+            <p class="reward-note">请截图保存此编码，在购买产品时向客服出示即可获得专属礼品</p>
+        </div>
+        
+        <footer>
+            <p>© 2025 榫卯·匠心-文化创意平台 版权所有</p>
+        </footer>
+    </div>
+
+    <script>
+        // 生成随机兑换码
+        function generateRewardCode() {
+            // 获取已生成的兑换码列表
+            let usedCodes = JSON.parse(localStorage.getItem('usedRewardCodes')) || [];
+            
+            // 生成新兑换码
+            let newCode;
+            let attempts = 0;
+            const maxAttempts = 100;
+            
+            do {
+                // 生成格式为 SM2024-XXXXXX 的兑换码
+                const randomPart = Math.random().toString(36).substring(2, 8).toUpperCase();
+                newCode = `SM2024-${randomPart}`;
+                attempts++;
+                
+                // 防止无限循环
+                if (attempts >= maxAttempts) {
+                    console.error('无法生成唯一兑换码');
+                    return null;
+                }
+            } while (usedCodes.includes(newCode));
+            
+            // 保存新兑换码
+            usedCodes.push(newCode);
+            localStorage.setItem('usedRewardCodes', JSON.stringify(usedCodes));
+            
+            return newCode;
+        }
+        
+        // 处理表单提交
+        document.getElementById('surveyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 生成兑换码
+            const rewardCode = generateRewardCode();
+            
+            if (rewardCode) {
+                // 显示兑换码
+                document.getElementById('rewardCode').textContent = rewardCode;
+                document.getElementById('rewardSection').style.display = 'block';
+                
+                // 滚动到兑换码区域
+                document.getElementById('rewardSection').scrollIntoView({ behavior: 'smooth' });
+                
+                // 可选：将表单数据保存到localStorage
+                const formData = new FormData(this);
+                const data = Object.fromEntries(formData);
+                data.rewardCode = rewardCode;
+                data.submitTime = new Date().toLocaleString();
+                
+                // 保存问卷数据
+                const surveyResults = JSON.parse(localStorage.getItem('surveyResults')) || [];
+                surveyResults.push(data);
+                localStorage.setItem('surveyResults', JSON.stringify(surveyResults));
+                
+                // 重置表单
+                this.reset();
+            } else {
+                alert('生成兑换码失败，请刷新页面重试');
+            }
+        });
+    </script>
+</body>
+</html>

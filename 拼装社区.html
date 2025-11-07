@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拼装社区 - 榫卯·匠心</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "SimHei", sans-serif;
+        }
+        
+        body {
+            background-color: #f5f1e6;
+            color: #5c3d2e;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background-color: #8b4513;
+            color: #f5f1e6;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #d9b38c;
+        }
+        
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 8px 16px;
+            background-color: #f5f1e6;
+            color: #8b4513;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 1px solid #d9b38c;
+        }
+        
+        .back-button:hover {
+            background-color: #d9b38c;
+            transform: translateY(-2px);
+        }
+        
+        .community-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .message-form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid #d9b38c;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #5c3d2e;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #d9b38c;
+            border-radius: 4px;
+            font-size: 15px;
+            background-color: #f9f5ed;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #8b4513;
+            box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            background-color: #8b4513;
+            color: #f5f1e6;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #a0522d;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .messages-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid #d9b38c;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #8b4513;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #d9b38c;
+        }
+        
+        .message-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .message-card {
+            background-color: #f9f5ed;
+            border-radius: 6px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #8b4513;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .message-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .message-author {
+            font-weight: bold;
+            color: #8b4513;
+            font-size: 1.1rem;
+        }
+        
+        .message-time {
+            color: #a0522d;
+            font-size: 0.9rem;
+        }
+        
+        .message-content {
+            color: #5c3d2e;
+            line-height: 1.7;
+        }
+        
+        .empty-message {
+            text-align: center;
+            padding: 40px 20px;
+            color: #a0522d;
+        }
+        
+        .empty-message i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #7a5c3c;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            header {
+                padding: 30px 0;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .back-button {
+                position: static;
+                display: inline-block;
+                margin-bottom: 15px;
+            }
+            
+            .message-form, .messages-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="平台主页.html" class="back-button">返回主页</a>
+            <h1>拼装社区</h1>
+            <p class="subtitle">与榫卯爱好者交流经验，分享作品</p>
+        </header>
+        
+        <div class="community-content">
+            <div class="message-form">
+                <h2 class="section-title">发布留言</h2>
+                <form id="messageForm">
+                    <div class="form-group">
+                        <label for="author">你的昵称</label>
+                        <input type="text" id="author" class="form-control" placeholder="请输入昵称" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="content">留言内容</label>
+                        <textarea id="content" class="form-control" placeholder="分享你的拼装心得、问题或建议..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn">发布留言</button>
+                </form>
+            </div>
+            
+            <div class="messages-container">
+                <h2 class="section-title">社区留言</h2>
+                <div class="message-list" id="messageList">
+                    <!-- 留言将动态添加到这里 -->
+                    <div class="empty-message" id="emptyMessage">
+                        <i>💬</i>
+                        <p>暂无留言，快来发表第一条留言吧！</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 榫卯·匠心-文化创意平台 版权所有</p>
+        </footer>
+    </div>
+
+    <script>
+        // 获取DOM元素
+        const messageForm = document.getElementById('messageForm');
+        const messageList = document.getElementById('messageList');
+        const emptyMessage = document.getElementById('emptyMessage');
+        
+        // 从本地存储加载留言
+        function loadMessages() {
+            const messages = JSON.parse(localStorage.getItem('communityMessages')) || [];
+            
+            if (messages.length === 0) {
+                emptyMessage.style.display = 'block';
+                return;
+            }
+            
+            emptyMessage.style.display = 'none';
+            
+            // 清空当前留言列表
+            messageList.innerHTML = '';
+            
+            // 添加留言到页面
+            messages.forEach(message => {
+                addMessageToDOM(message);
+            });
+        }
+        
+        // 添加留言到DOM
+        function addMessageToDOM(message) {
+            const messageCard = document.createElement('div');
+            messageCard.className = 'message-card';
+            
+            const messageDate = new Date(message.timestamp);
+            const formattedDate = `${messageDate.getFullYear()}-${(messageDate.getMonth()+1).toString().padStart(2, '0')}-${messageDate.getDate().toString().padStart(2, '0')} ${messageDate.getHours().toString().padStart(2, '0')}:${messageDate.getMinutes().toString().padStart(2, '0')}`;
+            
+            messageCard.innerHTML = `
+                <div class="message-header">
+                    <div class="message-author">${message.author}</div>
+                    <div class="message-time">${formattedDate}</div>
+                </div>
+                <div class="message-content">${message.content}</div>
+            `;
+            
+            messageList.appendChild(messageCard);
+        }
+        
+        // 处理表单提交
+        messageForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const author = document.getElementById('author').value.trim();
+            const content = document.getElementById('content').value.trim();
+            
+            if (!author || !content) {
+                alert('请填写完整的留言信息！');
+                return;
+            }
+            
+            // 创建新留言对象
+            const newMessage = {
+                author,
+                content,
+                timestamp: new Date().getTime()
+            };
+            
+            // 获取现有留言
+            const messages = JSON.parse(localStorage.getItem('communityMessages')) || [];
+            
+            // 添加新留言
+            messages.unshift(newMessage);
+            
+            // 保存到本地存储
+            localStorage.setItem('communityMessages', JSON.stringify(messages));
+            
+            // 更新UI
+            loadMessages();
+            
+            // 重置表单
+            messageForm.reset();
+            
+            // 显示成功提示
+            alert('留言发布成功！');
+        });
+        
+        // 页面加载时加载留言
+        document.addEventListener('DOMContentLoaded', loadMessages);
+    </script>
+</body>
+</html>

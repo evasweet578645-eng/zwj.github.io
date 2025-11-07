@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品文化 - 榫卯·匠心-文化创意平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "SimHei", sans-serif;
+        }
+        
+        body {
+            background-color: #f5f1e6;
+            color: #5c3d2e;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background-color: #8b4513;
+            color: #f5f1e6;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #d9b38c;
+        }
+        
+        .back-btn {
+            position: absolute;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 10px 20px;
+            background-color: #d9b38c;
+            color: #5c3d2e;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .back-btn:hover {
+            background-color: #f5f1e6;
+        }
+        
+        /* 文化展示区域 */
+        .culture-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .culture-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #d9b38c;
+            position: relative;
+            height: 400px;
+            perspective: 1000px;
+        }
+        
+        .culture-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        
+        .culture-card:hover .culture-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .culture-card-front, .culture-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .culture-card-front {
+            background-color: #fff;
+            color: #5c3d2e;
+        }
+        
+        .culture-card-back {
+            background-color: #8b4513;
+            color: #f5f1e6;
+            transform: rotateY(180deg);
+        }
+        
+        .culture-card-front .card-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #8b4513;
+        }
+        
+        .culture-card-front h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #8b4513;
+        }
+        
+        .culture-card-back h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #f5f1e6;
+        }
+        
+        .culture-card-back p {
+            margin-bottom: 15px;
+        }
+        
+        /* 横向滑动时间线区域 */
+        .timeline-section {
+            margin: 60px 0;
+            position: relative;
+        }
+        
+        .timeline-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: #8b4513;
+            position: relative;
+        }
+        
+        .timeline-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #d9b38c;
+        }
+        
+        .timeline-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+        
+        .timeline-scroll {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 10px 0;
+            gap: 20px;
+            scrollbar-width: thin;
+            scrollbar-color: #8b4513 #f5f1e6;
+        }
+        
+        .timeline-scroll::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .timeline-scroll::-webkit-scrollbar-track {
+            background: #f5f1e6;
+            border-radius: 10px;
+        }
+        
+        .timeline-scroll::-webkit-scrollbar-thumb {
+            background: #8b4513;
+            border-radius: 10px;
+        }
+        
+        .timeline-item {
+            flex: 0 0 320px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid #d9b38c;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .timeline-image {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .timeline-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .timeline-item:hover .timeline-image img {
+            transform: scale(1.05);
+        }
+        
+        .timeline-content {
+            padding: 20px;
+        }
+        
+        .timeline-year {
+            font-weight: bold;
+            color: #8b4513;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #f5f1e6;
+            border-radius: 4px;
+        }
+        
+        .timeline-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #5c3d2e;
+        }
+        
+        .timeline-content p {
+            color: #7a5c3c;
+            font-size: 0.95rem;
+        }
+        
+        .timeline-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .timeline-nav-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #8b4513;
+            color: #f5f1e6;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: background-color 0.3s;
+        }
+        
+        .timeline-nav-btn:hover {
+            background-color: #a0522d;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #7a5c3c;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .culture-showcase {
+                grid-template-columns: 1fr;
+            }
+            
+            .back-btn {
+                position: static;
+                margin-bottom: 15px;
+                display: inline-block;
+                transform: none;
+            }
+            
+            .timeline-item {
+                flex: 0 0 280px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="平台主页.html" class="back-btn">返回首页</a>
+            <h1>榫卯文化</h1>
+            <p class="subtitle">阴阳互补，虚实相生 - 榫卯技艺中的哲学智慧</p>
+        </header>
+        
+        <div class="culture-showcase">
+            <div class="culture-card">
+                <div class="culture-card-inner">
+                    <div class="culture-card-front">
+                        <div class="card-icon">⚖️</div>
+                        <h3>阴阳平衡</h3>
+                        <p>点击翻转了解更多</p>
+                    </div>
+                    <div class="culture-card-back">
+                        <h3>阴阳平衡</h3>
+                        <p>榫为阳，卯为阴，榫卯结构完美体现了中国传统阴阳哲学。阴阳互补，刚柔并济，榫卯结构在连接中寻求平衡，在平衡中达到和谐。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="culture-card">
+                <div class="culture-card-inner">
+                    <div class="culture-card-front">
+                        <div class="card-icon">🌳</div>
+                        <h3>天人合一</h3>
+                        <p>点击翻转了解更多</p>
+                    </div>
+                    <div class="culture-card-back">
+                        <h3>天人合一</h3>
+                        <p>榫卯结构尊重木材的自然属性，顺应纹理，利用木材的弹性与韧性，体现了"道法自然"的哲学思想，达到人与自然的和谐统一。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="culture-card">
+                <div class="culture-card-inner">
+                    <div class="culture-card-front">
+                        <div class="card-icon">🔄</div>
+                        <h3>循环往复</h3>
+                        <p>点击翻转了解更多</p>
+                    </div>
+                    <div class="culture-card-back">
+                        <h3>循环往复</h3>
+                        <p>榫卯结构可拆卸、可重组，体现了中国传统循环观念。这种可逆性设计不仅便于维修，更蕴含了"周而复始"的宇宙观。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline-section">
+            <h2 class="timeline-title">榫卯文化发展历程</h2>
+            <div class="timeline-container">
+                <div class="timeline-scroll" id="timelineScroll">
+                    <div class="timeline-item">
+                        <div class="timeline-image">
+                            <img src="images/河姆渡遗址.jpg" alt="河姆渡遗址榫卯">
+                        </div>
+                        <div class="timeline-content">
+                            <span class="timeline-year">约7000年前</span>
+                            <h3>河姆渡文化时期</h3>
+                            <p>在浙江余姚河姆渡遗址中发现了最早的榫卯结构，主要用于干栏式建筑，标志着榫卯技术的萌芽。</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-image">
+                            <img src="images/商周时期.jpg" alt="商周时期榫卯">
+                        </div>
+                        <div class="timeline-content">
+                            <span class="timeline-year">商周时期</span>
+                            <h3>青铜器与木作结合</h3>
+                            <p>青铜工具的出现使榫卯工艺更加精细，应用于宫殿建筑和贵族家具，技术日趋成熟。</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-image">
+                            <img src="images/唐宋建筑.jpg" alt="唐宋时期榫卯">
+                        </div>
+                        <div class="timeline-content">
+                            <span class="timeline-year">唐宋时期</span>
+                            <h3>技艺高峰</h3>
+                            <p>唐宋建筑将榫卯技艺推向高峰，斗拱系统复杂精巧，成为东方建筑体系的标志性特征。</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-image">
+                            <img src="images/明清家具.jpg" alt="明清家具榫卯">
+                        </div>
+                        <div class="timeline-content">
+                            <span class="timeline-year">明清时期</span>
+                            <h3>家具艺术巅峰</h3>
+                            <p>明式家具将榫卯技艺与审美完美结合，创造了世界家具史上的辉煌篇章，技艺达至化境。</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-image">
+                            <img src="images/现代应用.png" alt="现代榫卯应用">
+                        </div>
+                        <div class="timeline-content">
+                            <span class="timeline-year">现代</span>
+                            <h3>传承与创新</h3>
+                            <p>榫卯技艺与现代设计、建筑结合，焕发新的生命力，成为连接传统与现代的文化桥梁。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-nav">
+                    <button class="timeline-nav-btn" id="prevBtn">‹</button>
+                    <button class="timeline-nav-btn" id="nextBtn">›</button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 榫卯·匠心-文化创意平台 版权所有</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const timelineScroll = document.getElementById('timelineScroll');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const itemWidth = 320; // 每个时间线项目的宽度（包含间距）
+            
+            // 下一张
+            nextBtn.addEventListener('click', function() {
+                timelineScroll.scrollBy({
+                    left: itemWidth,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 上一张
+            prevBtn.addEventListener('click', function() {
+                timelineScroll.scrollBy({
+                    left: -itemWidth,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // 可选：添加键盘导航
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft') {
+                    timelineScroll.scrollBy({
+                        left: -itemWidth,
+                        behavior: 'smooth'
+                    });
+                } else if (e.key === 'ArrowRight') {
+                    timelineScroll.scrollBy({
+                        left: itemWidth,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

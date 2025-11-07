@@ -1,0 +1,506 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>榫卯知识库 - 榫卯·匠心-文化创意平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "SimHei", sans-serif;
+        }
+        
+        body {
+            background-color: #f5f1e6;
+            color: #5c3d2e;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background-color: #8b4513;
+            color: #f5f1e6;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #d9b38c;
+        }
+        
+        .back-btn {
+            position: absolute;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 10px 20px;
+            background-color: #d9b38c;
+            color: #5c3d2e;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .back-btn:hover {
+            background-color: #f5f1e6;
+        }
+        
+        .knowledge-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .knowledge-section {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid #d9b38c;
+        }
+        
+        .section-header {
+            background-color: #8b4513;
+            color: #f5f1e6;
+            padding: 15px 20px;
+            font-size: 1.5rem;
+        }
+        
+        .section-content {
+            padding: 20px;
+        }
+        
+        .section-content p {
+            margin-bottom: 15px;
+            color: #7a5c3c;
+        }
+        
+        /* 轮播容器样式 */
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 300px; /* 固定高度，可根据需要调整 */
+            overflow: hidden;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            background-color: #f5f1e6;
+        }
+        
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%;
+        }
+        
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* 保持图片比例，完整显示 */
+        }
+        
+        /* 导航按钮样式 */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(139, 69, 19, 0.7);
+            color: #f5f1e6;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: background-color 0.3s;
+        }
+        
+        .carousel-btn:hover {
+            background-color: rgba(139, 69, 19, 0.9);
+        }
+        
+        .carousel-btn.prev {
+            left: 10px;
+        }
+        
+        .carousel-btn.next {
+            right: 10px;
+        }
+        
+        /* 指示器样式 */
+        .carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .indicator.active {
+            background-color: #8b4513;
+        }
+        
+        .structure-list {
+            list-style-type: none;
+        }
+        
+        .structure-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #d9b38c;
+        }
+        
+        .structure-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .structure-name {
+            font-weight: bold;
+            color: #8b4513;
+        }
+        
+        .structure-desc {
+            color: #7a5c3c;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            color: #7a5c3c;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .knowledge-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .back-btn {
+                position: static;
+                margin-bottom: 15px;
+                display: inline-block;
+                transform: none;
+            }
+            
+            .carousel-container {
+                height: 250px; /* 移动设备上稍小的高度 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="平台主页.html" class="back-btn">返回首页</a>
+            <h1>榫卯知识库</h1>
+            <p class="subtitle">探索千年木构技艺的智慧与美学</p>
+        </header>
+        
+        <div class="knowledge-content">
+            <div class="knowledge-section">
+                <div class="section-header">榫卯简介</div>
+                <div class="section-content">
+                    <div class="carousel-container" id="carousel-1">
+                        <div class="carousel-track">
+                            <div class="carousel-slide">
+                                <img src="images/榫卯介绍.png" alt="榫卯结构示意图">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="images/榫卯结构1.jpg" alt="榫卯结构示意图2">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="images/榫卯结构2.jpg" alt="榫卯结构示意图3">
+                            </div>
+                        </div>
+                        <button class="carousel-btn prev">‹</button>
+                        <button class="carousel-btn next">›</button>
+                        <div class="carousel-indicators">
+                            <div class="indicator active"></div>
+                            <div class="indicator"></div>
+                            <div class="indicator"></div>
+                        </div>
+                    </div>
+                    <p>榫卯是中国古代建筑、家具及其他木制器械的主要结构方式，是在两个构件上采用凹凸部位相结合的一种连接方式。凸出部分叫榫（或榫头），凹进部分叫卯（或榫眼、榫槽）。</p>
+                    <p>这种结构不仅不需要钉子，还能在各种方向上承受压力，使得整体结构更加稳固。榫卯结构体现了中国古代工匠的智慧，是中国传统木工工艺的精华。</p>
+                </div>
+            </div>
+            
+            <div class="knowledge-section">
+                <div class="section-header">历史发展</div>
+                <div class="section-content">
+                    <div class="carousel-container" id="carousel-2">
+                        <div class="carousel-track">
+                            <div class="carousel-slide">
+                                <img src="images/历史发展.png" alt="古代榫卯结构">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="images/河姆渡遗址.jpg" alt="河姆渡遗址榫卯">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="images/明清家具.jpg" alt="明清家具榫卯">
+                            </div>
+                        </div>
+                        <button class="carousel-btn prev">‹</button>
+                        <button class="carousel-btn next">›</button>
+                        <div class="carousel-indicators">
+                            <div class="indicator active"></div>
+                            <div class="indicator"></div>
+                            <div class="indicator"></div>
+                        </div>
+                    </div>
+                    <p>榫卯结构的历史可以追溯到新石器时代，在距今约7000年前的浙江余姚河姆渡文化遗址中，就已发现了大量采用榫卯技术的木质构件。</p>
+                    <p>随着时间的推移，榫卯技艺在唐宋时期达到高峰，明清家具更是将榫卯结构发挥到极致，形成了独特的艺术风格和技术体系。</p>
+                </div>
+            </div>
+            
+            <div class="knowledge-section">
+                <div class="section-header">基本原理</div>
+                <div class="section-content">
+                    <div class="carousel-container" id="carousel-3">
+                        <div class="carousel-track">
+                            <div class="carousel-slide">
+                                <img src="images/榫卯原理.jpg" alt="榫卯原理图">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="images/榫卯原理2.jpg" alt="榫卯原理图2">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="images/榫卯原理3.jpg" alt="榫卯原理图3">
+                            </div>
+                        </div>
+                        <button class="carousel-btn prev">‹</button>
+                        <button class="carousel-btn next">›</button>
+                        <div class="carousel-indicators">
+                            <div class="indicator active"></div>
+                            <div class="indicator"></div>
+                            <div class="indicator"></div>
+                        </div>
+                    </div>
+                    <p>榫卯结构的基本原理是利用木材的弹性、韧性和相互咬合的力量，实现构件之间的牢固连接。它遵循"阴阳互补、虚实相生"的哲学思想。</p>
+                    <p>榫卯结构的关键在于精确的尺寸配合，榫头和卯口必须严丝合缝，既不能太紧导致木材开裂，也不能太松影响结构稳定性。</p>
+                </div>
+            </div>
+            
+            <div class="knowledge-section">
+                <div class="section-header">主要分类</div>
+                <div class="section-content">
+                    <div class="carousel-container" id="carousel-4">
+                        <div class="carousel-track">
+                            <div class="carousel-slide">
+                                <img src="images/榫卯分类.png" alt="不同榫卯类型">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="images/直榫.jpg" alt="直榫结构">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="images/燕尾榫.jpg" alt="燕尾榫结构">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="images/粽角榫.jpg" alt="粽角榫结构">
+                            </div>
+                        </div>
+                        <button class="carousel-btn prev">‹</button>
+                        <button class="carousel-btn next">›</button>
+                        <div class="carousel-indicators">
+                            <div class="indicator active"></div>
+                            <div class="indicator"></div>
+                            <div class="indicator"></div>
+                            <div class="indicator"></div>
+                        </div>
+                    </div>
+                    <ul class="structure-list">
+                        <li>
+                            <div class="structure-name">直榫</div>
+                            <div class="structure-desc">最基本的榫卯形式，适用于大多数框架连接</div>
+                        </li>
+                        <li>
+                            <div class="structure-name">燕尾榫</div>
+                            <div class="structure-desc">梯形结构，连接牢固，多用于抽屉和箱体</div>
+                        </li>
+                        <li>
+                            <div class="structure-name">楔钉榫</div>
+                            <div class="structure-desc">通过楔子加固连接，常用于弧形构件</div>
+                        </li>
+                        <li>
+                            <div class="structure-name">粽角榫</div>
+                            <div class="structure-desc">三个方向相交的榫卯，外形似粽子角</div>
+                        </li>
+                        <li>
+                            <div class="structure-name">格角榫</div>
+                            <div class="structure-desc">用于框架角部连接，外观整洁美观</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="knowledge-section">
+                <div class="section-header">现代应用</div>
+                <div class="section-content">
+                    <div class="carousel-container" id="carousel-5">
+                        <div class="carousel-track">
+                            <div class="carousel-slide">
+                                <img src="images/现代应用.png" alt="现代榫卯应用">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="images/现代家具.jpg" alt="现代家具中的榫卯">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="images/现代建筑.jpg" alt="现代建筑中的榫卯">
+                            </div>
+                        </div>
+                        <button class="carousel-btn prev">‹</button>
+                        <button class="carousel-btn next">›</button>
+                        <div class="carousel-indicators">
+                            <div class="indicator active"></div>
+                            <div class="indicator"></div>
+                            <div class="indicator"></div>
+                        </div>
+                    </div>
+                    <p>在现代，榫卯结构不仅应用于传统家具和古建筑修复，还被创新应用于现代设计、建筑和工业产品中。</p>
+                    <p>许多设计师将榫卯元素融入现代家居、文创产品和建筑设计中，既保留了传统工艺的美感，又赋予了其新的时代内涵。</p>
+                </div>
+            </div>
+            
+            <div class="knowledge-section">
+                <div class="section-header">文化价值</div>
+                <div class="section-content">
+                    <div class="carousel-container" id="carousel-6">
+                        <div class="carousel-track">
+                            <div class="carousel-slide">
+                                <img src="images/文化价值.jpg" alt="榫卯文化象征">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="images/榫卯哲学.jpg" alt="榫卯与哲学">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="images/榫卯精神.jpg" alt="榫卯精神">
+                            </div>
+                        </div>
+                        <button class="carousel-btn prev">‹</button>
+                        <button class="carousel-btn next">›</button>
+                        <div class="carousel-indicators">
+                            <div class="indicator active"></div>
+                            <div class="indicator"></div>
+                            <div class="indicator"></div>
+                        </div>
+                    </div>
+                    <p>榫卯结构不仅是一种工艺技术，更承载着深厚的文化内涵。它体现了中国传统文化中"天人合一"的哲学思想，以及"以柔克刚"的智慧。</p>
+                    <p>榫卯结构的阴阳互补、虚实相生，与中国传统哲学中的阴阳观念高度契合，是中国工匠精神的重要体现。</p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 榫卯·匠心-文化创意平台 版权所有</p>
+        </footer>
+    </div>
+
+    <script>
+        // 初始化所有轮播
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为每个轮播容器初始化
+            const carousels = document.querySelectorAll('.carousel-container');
+            
+            carousels.forEach(carousel => {
+                const track = carousel.querySelector('.carousel-track');
+                const slides = Array.from(track.querySelectorAll('.carousel-slide'));
+                const prevBtn = carousel.querySelector('.carousel-btn.prev');
+                const nextBtn = carousel.querySelector('.carousel-btn.next');
+                const indicators = Array.from(carousel.querySelectorAll('.indicator'));
+                
+                let currentIndex = 0;
+                
+                // 更新轮播位置
+                function updateCarousel() {
+                    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                    
+                    // 更新指示器状态
+                    indicators.forEach((indicator, index) => {
+                        indicator.classList.toggle('active', index === currentIndex);
+                    });
+                }
+                
+                // 下一张
+                function nextSlide() {
+                    currentIndex = (currentIndex + 1) % slides.length;
+                    updateCarousel();
+                }
+                
+                // 上一张
+                function prevSlide() {
+                    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                    updateCarousel();
+                }
+                
+                // 点击指示器跳转到对应幻灯片
+                indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => {
+                        currentIndex = index;
+                        updateCarousel();
+                    });
+                });
+                
+                // 绑定按钮事件
+                prevBtn.addEventListener('click', prevSlide);
+                nextBtn.addEventListener('click', nextSlide);
+                
+                // 可选：自动轮播
+                let autoplayInterval = setInterval(nextSlide, 5000);
+                
+                // 鼠标悬停时暂停自动轮播
+                carousel.addEventListener('mouseenter', () => {
+                    clearInterval(autoplayInterval);
+                });
+                
+                carousel.addEventListener('mouseleave', () => {
+                    autoplayInterval = setInterval(nextSlide, 5000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
