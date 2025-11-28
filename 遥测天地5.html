@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -430,7 +429,7 @@
             right: 0;
         }
         
-        /* 新闻动态样式 */
+        /* 新闻动态样式 - 修改部分 */
         .news {
             padding: 80px 5%;
             background-color: #f5f9f5;
@@ -447,33 +446,39 @@
             position: relative;
             overflow: hidden;
             margin-top: 40px;
-            height: 300px;
+            /* 移除固定高度，让容器自适应 */
         }
         
         .news-slider {
             display: flex;
-            height: 100%;
+            /* 移除高度限制 */
             transition: transform 0.5s ease;
         }
         
         .news-slide {
             flex: 0 0 33.333%; /* 每张图片占33.333%宽度，显示3张 */
-            height: 100%;
+            /* 移除高度限制 */
             padding: 0 10px;
+            display: flex;
+            align-items: center; /* 垂直居中 */
         }
         
         .news-image {
             width: 100%;
-            height: 100%;
+            /* 移除固定高度，让图片自适应 */
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
         .news-image img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto; /* 让图片保持原始比例 */
+            max-height: 400px; /* 设置最大高度，避免图片过大 */
+            object-fit: contain; /* 确保图片完整显示 */
         }
         
         .news-arrow {
@@ -614,7 +619,7 @@
     <section class="about" id="about">
         <div class="about-content">
             <h2>公司概况</h2>
-            <p>本企业是深耕“生态农业文旅”融合领域的发展中企业，旨在探索一条乡村振兴新路径。通过 "庄园 + 文旅 + 文创 + 农产品" 的全产业链布局，同时引入遥感技术辅助未来农业庄园规划，依托该技术精准获取区域内土地利用状况、水文特征、植被覆盖等关键数据，为庄园空间布局、作物种植规划及文旅设施建设提供科学支撑。我们以农业产业和乡村风貌为基底，打造独特的旅游吸引力，实现双向引流和多重变现，将原本免费的乡村资源（田园风光、农耕文化、乡村生活）进行产品化包装，并使其能够被“体验”和“消费”，从而创造出全新的收入来源<p>
+            <p>本企业是深耕"生态农业文旅"融合领域的发展中企业，旨在探索一条乡村振兴新路径。通过 "庄园 + 文旅 + 文创 + 农产品" 的全产业链布局，同时引入遥感技术辅助未来农业庄园规划，依托该技术精准获取区域内土地利用状况、水文特征、植被覆盖等关键数据，为庄园空间布局、作物种植规划及文旅设施建设提供科学支撑。我们以农业产业和乡村风貌为基底，打造独特的旅游吸引力，实现双向引流和多重变现，将原本免费的乡村资源（田园风光、农耕文化、乡村生活）进行产品化包装，并使其能够被"体验"和"消费"，从而创造出全新的收入来源</p>
         </div>
         <div class="about-image">
             <img src="image/c.png" alt="遥测天地公司概况图" style="width: 100%; height: 100%; object-fit: cover;">
@@ -702,7 +707,7 @@
                 <div class="product-group">
                     <div class="product-item">
                         <div class="product-image">
-                            <img src="image/“葡菱乡韵”马克杯.png" alt="葡菱蛙语马克杯" style="width: 100%; height: 100%; object-fit: cover;">
+                            <img src="image/"葡菱乡韵"马克杯.png" alt="葡菱蛙语马克杯" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="product-info">
                             <h3>"葡菱蛙语"马克杯</h3>
@@ -954,7 +959,7 @@
                 showProductGroup(currentProductGroup + 1);
             }, 6000);
             
-            // 新闻动态轮播功能
+            // 新闻动态轮播功能 - 修改部分
             let currentNewsSlide = 0;
             const newsSlides = document.querySelectorAll('.news-slide');
             const totalNewsSlides = newsSlides.length;
