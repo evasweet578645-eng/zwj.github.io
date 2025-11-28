@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>遥测天地公司 - 首页</title>
+    <title>遥策庄园公司 - 首页</title>
     <style>
         * {
             margin: 0;
@@ -145,6 +145,113 @@
             background-color: white;
         }
         
+        /* 公司概况样式 */
+        .about {
+            padding: 80px 5%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+        }
+        
+        .about-content {
+            flex: 1;
+            padding-right: 50px;
+        }
+        
+        .about-content h2 {
+            font-size: 32px;
+            color: #2c5e2e;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .about-content h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: #2c5e2e;
+        }
+        
+        .about-content p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .about-image {
+            flex: 1;
+            height: 400px;
+            background-color: #e8f5e9;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        /* 技术特色样式 */
+        .tech-features {
+            padding: 80px 5%;
+            background-color: #f5f9f5;
+        }
+        
+        .tech-title {
+            text-align: center;
+            font-size: 32px;
+            color: #2c5e2e;
+            margin-bottom: 15px;
+        }
+        
+        .title-line {
+            width: 80px;
+            height: 3px;
+            background-color: #2c5e2e;
+            margin: 0 auto 40px;
+        }
+        
+        .tech-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+        
+        .tech-item.reverse {
+            flex-direction: row-reverse;
+        }
+        
+        .tech-content {
+            flex: 1;
+            padding: 0 40px;
+        }
+        
+        .tech-content h3 {
+            font-size: 24px;
+            color: #2c5e2e;
+            margin-bottom: 20px;
+        }
+        
+        .tech-content p {
+            font-size: 16px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+        
+        .tech-image {
+            flex: 1;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .tech-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
         /* 开展业务样式 */
         .business {
             padding: 80px 0;
@@ -157,13 +264,6 @@
             font-size: 32px;
             color: #2c5e2e;
             margin-bottom: 15px;
-        }
-        
-        .title-line {
-            width: 80px;
-            height: 3px;
-            background-color: #2c5e2e;
-            margin: 0 auto 40px;
         }
         
         .business-content {
@@ -240,52 +340,6 @@
         .business-info p {
             font-size: 16px;
             line-height: 1.6;
-        }
-        
-        /* 公司概况样式 */
-        .about {
-            padding: 80px 5%;
-            background-color: white;
-            display: flex;
-            align-items: center;
-        }
-        
-        .about-content {
-            flex: 1;
-            padding-right: 50px;
-        }
-        
-        .about-content h2 {
-            font-size: 32px;
-            color: #2c5e2e;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        
-        .about-content h2:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background-color: #2c5e2e;
-        }
-        
-        .about-content p {
-            font-size: 16px;
-            line-height: 1.8;
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-        
-        .about-image {
-            flex: 1;
-            height: 400px;
-            background-color: #e8f5e9;
-            border-radius: 8px;
-            overflow: hidden;
         }
         
         /* 产品展示样式 */
@@ -376,6 +430,82 @@
             right: 0;
         }
         
+        /* 新闻动态样式 */
+        .news {
+            padding: 80px 5%;
+            background-color: #f5f9f5;
+        }
+        
+        .news-title {
+            text-align: center;
+            font-size: 32px;
+            color: #2c5e2e;
+            margin-bottom: 15px;
+        }
+        
+        .news-container {
+            position: relative;
+            overflow: hidden;
+            margin-top: 40px;
+            height: 300px;
+        }
+        
+        .news-slider {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+        
+        .news-slide {
+            flex: 0 0 33.333%; /* 每张图片占33.333%宽度，显示3张 */
+            height: 100%;
+            padding: 0 10px;
+        }
+        
+        .news-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .news-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(44, 94, 46, 0.8);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: white;
+            font-size: 20px;
+            transition: background-color 0.3s;
+            z-index: 10;
+        }
+        
+        .news-arrow:hover {
+            background-color: #2c5e2e;
+        }
+        
+        .news-prev {
+            left: 0;
+        }
+        
+        .news-next {
+            right: 0;
+        }
+        
         /* 联系我们样式 */
         .contact {
             background-color: #2c5e2e;
@@ -386,6 +516,7 @@
         .contact-content {
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
         
         .contact-info {
@@ -402,22 +533,35 @@
             font-size: 16px;
         }
         
-        .contact-qr {
+        .contact-douyin {
             flex: 1;
             display: flex;
-            justify-content: flex-end;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
         }
         
-        .qr-code {
+        .douyin-qr {
             width: 150px;
             height: 150px;
             background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #2c5e2e;
-            font-weight: bold;
+        }
+        
+        .douyin-qr img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .douyin-text {
+            font-size: 16px;
+            text-align: center;
         }
         
         /* 页脚样式 */
@@ -434,32 +578,31 @@
     <!-- 导航栏 -->
     <header>
         <div class="logo">
-            遥测天地公司
+            遥策庄园公司
             <div class="logo-en">YAO CE TIAN DI</div>
         </div>
         <nav>
             <ul>
                 <li><a href="#home">首页</a></li>
                 <li><a href="#about">公司概况</a></li>
+                <li><a href="#tech">技术特色</a></li>
                 <li><a href="#business">开展业务</a></li>
                 <li><a href="#products">产品展示</a></li>
+                <li><a href="#news">新闻动态</a></li>
                 <li><a href="#contact">联系我们</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- 轮播图（修复后可正常左右切换） -->
+    <!-- 轮播图 -->
     <section class="slider" id="home">
         <div class="slides">
-            <!-- 三张轮播图，每张占20%宽度 -->
             <div class="slide" style="background-image: url('image/e.png');"></div>
             <div class="slide" style="background-image: url('image/公司1.png');"></div>
             <div class="slide" style="background-image: url('image/公司2.png');"></div>
         </div>
-        <!-- 左右箭头（可正常点击） -->
         <div class="arrow prev">&#10094;</div>
         <div class="arrow next">&#10095;</div>
-        <!-- 指示器 -->
         <div class="slider-controls">
             <div class="slider-control active"></div>
             <div class="slider-control"></div>
@@ -471,12 +614,49 @@
     <section class="about" id="about">
         <div class="about-content">
             <h2>公司概况</h2>
-            <p>遥测天地公司，是深耕“生态农业文旅”融合领域的发展中企业，旨在探索一条乡村振兴新路径。</p>
-            <p>通过 "庄园 + 文旅 + 文创 + 农产品" 的全产业链布局，以农业产业和乡村风貌为基底，打造独特的旅游吸引力，实现双向引流和多重变现。</p>
-            <p>将原本免费的乡村资源（田园风光、农耕文化、乡村生活）进行产品化包装，并使其能够被“体验”和“消费”，从而创造出全新的收入来源。</p>
+            <p>本企业是深耕“生态农业文旅”融合领域的发展中企业，旨在探索一条乡村振兴新路径。通过 "庄园 + 文旅 + 文创 + 农产品" 的全产业链布局，同时引入遥感技术辅助未来农业庄园规划，依托该技术精准获取区域内土地利用状况、水文特征、植被覆盖等关键数据，为庄园空间布局、作物种植规划及文旅设施建设提供科学支撑。我们以农业产业和乡村风貌为基底，打造独特的旅游吸引力，实现双向引流和多重变现，将原本免费的乡村资源（田园风光、农耕文化、乡村生活）进行产品化包装，并使其能够被“体验”和“消费”，从而创造出全新的收入来源<p>
         </div>
         <div class="about-image">
             <img src="image/c.png" alt="遥测天地公司概况图" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+    </section>
+
+    <!-- 技术特色 -->
+    <section class="tech-features" id="tech">
+        <h2 class="tech-title">技术特色</h2>
+        <div class="title-line"></div>
+        
+        <!-- 第一组：左文字右图片 -->
+        <div class="tech-item">
+            <div class="tech-content">
+                <h3>遥感赋能 精准研判农业用地特征</h3>
+                <p>在乡村振兴农业发展领域，团队以技术赋能产业规划，运用遥感技术开展全域空间勘测，凭借其宏观覆盖与精准分析能力，深度研判农业用地的整体空间布局、分布规律及核心现状特征，为产业规划奠定坚实的空间基础数据支撑</p>
+            </div>
+            <div class="tech-image">
+                <img src="image/a.png" alt="遥感赋能 精准研判农业用地特征">
+            </div>
+        </div>
+        
+        <!-- 第二组：左图片右文字 -->
+        <div class="tech-item reverse">
+            <div class="tech-content">
+                <h3>低空航拍补数据 支撑农业发展规划</h3>
+                <p>在乡村振兴农业发展领域，团队以技术赋能产业规划，借助无人机航拍技术实现精细化勘测，通过低空飞行捕捉地块实景特征、细化用地边界信息，精准补充农业用地微观现状数据，为后续农业产业优化、资源高效配置及可持续发展路径规划提供具象化的决策依据</p>
+            </div>
+            <div class="tech-image">
+                <img src="image/b.png" alt="低空航拍补数据 支撑农业发展规划">
+            </div>
+        </div>
+        
+        <!-- 第三组：左文字右图片 -->
+        <div class="tech-item">
+            <div class="tech-content">
+                <h3>实证调研 夯实规划民意基础</h3>
+                <p>团队坚持民意导向与实证调研相结合，借鉴深度访谈等成熟调研模式，精准对接乡村治理主体、产业经营主体及村民代表等多元群体，设计通俗易懂的调研问卷，兼顾样本覆盖广度与意见收集深度；系统梳理乡村产业发展史料、过往规划成果等核心资料，全面汇聚各方诉求与发展基础信息，为农业产业定位、发展路径设计提供全面的民意支撑与历史依据，以此确保规划方案贴合乡村实际、契合群众期盼</p>
+            </div>
+            <div class="tech-image">
+                <img src="image/c.png" alt="实证调研，夯实规划民意基础">
+            </div>
         </div>
     </section>
 
@@ -494,13 +674,13 @@
                 <div class="business-slide active" style="background-image: url('image/文旅.png');">
                     <div class="business-info">
                         <h3>文旅业务</h3>
-                        <p>整合生产场景与乡土资源，开发“农业+文旅+科普”体验。设计葡萄采摘、红菱手作、稻蛙研学、生态廊道观光等多元体验业态，打造四季可游的农旅动线。面向亲子家庭、研学团体与短途游客，开展农事课堂、文化节庆、DIY活动，配套民宿、农家乐与服务设施。</p>
+                        <p>整合生产场景与乡土资源，开发"农业+文旅+科普"体验。设计葡萄采摘、红菱手作、稻蛙研学、生态廊道观光等多元体验业态，打造四季可游的农旅动线。面向亲子家庭、研学团体与短途游客，开展农事课堂、文化节庆、DIY活动，配套民宿、农家乐与服务设施。</p>
                     </div>
                 </div>
                 <div class="business-slide" style="background-image: url('image/d.png');">
                     <div class="business-info">
                         <h3>农业+贸易业务</h3>
-                        <p>以特色种植与生态养殖为核心，打造了“蜜萄湾”葡萄园与“稻田蛙”基地等示范项目，通过露天、大棚、精品栽培等多模式组合，精准覆盖大众、高端及小众市场，实现亩产效益最大化；同时创新稻蛙共生系统，探索生态循环农业的高效产出。在此基础上，我们以前期免费规划与技术指导为切入点，后期深度融合物联网、大数据等智慧农业技术，为项目提供从基础设施升级到全产业链运营的定制化解决方案，最终构建一个集高效生产、科技赋能与可持续发展于一体的现代化农业产业体系。</p>
+                        <p>以特色种植与生态养殖为核心，打造了"蜜萄湾"葡萄园与"稻田蛙"基地等示范项目，通过露天、大棚、精品栽培等多模式组合，精准覆盖大众、高端及小众市场，实现亩产效益最大化；同时创新稻蛙共生系统，探索生态循环农业的高效产出。在此基础上，我们以前期免费规划与技术指导为切入点，后期深度融合物联网、大数据等智慧农业技术，为项目提供从基础设施升级到全产业链运营的定制化解决方案，最终构建一个集高效生产、科技赋能与可持续发展于一体的现代化农业产业体系。</p>
                     </div>
                 </div>
                 <div class="business-slide" style="background-image: url('image/工程.png');">
@@ -525,8 +705,8 @@
                             <img src="image/“葡菱乡韵”马克杯.png" alt="葡菱蛙语马克杯" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="product-info">
-                            <h3>“葡菱蛙语”马克杯</h3>
-                            <p>白色陶瓷杯身，杯面印有 “菜宝”图案；杯身印有 “葡菱蛙语”</p>
+                            <h3>"葡菱蛙语"马克杯</h3>
+                            <p>白色陶瓷杯身，杯面印有 "菜宝"图案；杯身印有 "葡菱蛙语"</p>
                         </div>
                     </div>
                     <div class="product-item">
@@ -534,7 +714,7 @@
                             <img src="image/稻蛙萌娃帆布包.png" alt="稻田萌蛙帆布包" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="product-info">
-                            <h3>“稻田萌蛙”帆布包</h3>
+                            <h3>"稻田萌蛙"帆布包</h3>
                             <p>浅米色纯棉帆布材质，正面以插画形式呈现菜宝手持水稻、背靠葡萄架的场景</p>
                         </div>
                     </div>
@@ -543,7 +723,7 @@
                             <img src="image/蛙趣桌面摆件.png" alt="蛙趣桌面摆件" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="product-info">
-                            <h3>“蛙趣桌面”摆件</h3>
+                            <h3>"蛙趣桌面"摆件</h3>
                             <p>迷你树脂材质，一套三款：①菜宝坐在稻穗上的丰收款；②菜宝抱着葡萄串的甜蜜款；③菜宝趴在红菱叶的清凉款</p>
                         </div>
                     </div>
@@ -552,7 +732,7 @@
                             <img src="image/乡韵笔记文具套装.png" alt="乡韵笔记文具套装" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="product-info">
-                            <h3>“乡韵笔记”文具套装</h3>
+                            <h3>"乡韵笔记"文具套装</h3>
                             <p>硬壳笔记本、中性笔、便利贴</p>
                         </div>
                     </div>
@@ -563,7 +743,7 @@
                             <img src="image/生态农园手作材料包.png" alt="生态农园手作材料包" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="product-info">
-                            <h3>“生态农园” 手作材料包</h3>
+                            <h3>"生态农园" 手作材料包</h3>
                             <p>DIY 黏土套装、菜宝主题手账本、说明书</p>
                         </div>
                     </div>
@@ -572,7 +752,7 @@
                             <img src="image/b.png" alt="蛙形茶包袋" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="product-info">
-                            <h3>“蛙形” 茶包袋</h3>
+                            <h3>"蛙形" 茶包袋</h3>
                             <p>立体蛙形茶包袋，透明纱网材质，内装庄园自产荷叶茶 /葡萄叶茶；茶包绳末端系有迷你菜宝挂件</p>
                         </div>
                     </div>
@@ -591,7 +771,7 @@
                         </div>
                         <div class="product-info">
                             <h3>蔡宝勋章</h3>
-                            <p>通过特定活动（小游戏）可获得带有“葡萄”“红菱”“水稻”“田园”的菜宝勋章</p>
+                            <p>通过特定活动（小游戏）可获得带有"葡萄""红菱""水稻""田园"的菜宝勋章</p>
                         </div>
                     </div>
                 </div>
@@ -601,8 +781,8 @@
                             <img src="image/韵宝守护农产品礼盒.png" alt="菜宝守护农产品礼盒" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="product-info">
-                            <h3>“菜宝守护” 农产品礼盒</h3>
-                            <p>外盒印有菜宝与三大作物的组合图案，内部分层设计，可容纳葡萄、红菱、稻田米等核心产品，附赠 “菜宝” IP 贴纸</p>
+                            <h3>"菜宝守护" 农产品礼盒</h3>
+                            <p>外盒印有菜宝与三大作物的组合图案，内部分层设计，可容纳葡萄、红菱、稻田米等核心产品，附赠 "菜宝" IP 贴纸</p>
                         </div>
                     </div>
                     <div class="product-item">
@@ -610,7 +790,7 @@
                             <img src="image/a.png" alt="葡菱乡韵农产品" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div class="product-info">
-                            <h3>“葡菱乡韵”农产品</h3>
+                            <h3>"葡菱乡韵"农产品</h3>
                             <p>品牌含「葡韵」「菱香」「稻田蛙」系列，还包括草莓、小番茄等当季果蔬，均按核心作物生态标准种植，保障鲜度与品质</p>
                         </div>
                     </div>
@@ -621,19 +801,64 @@
         </div>
     </section>
 
+    <!-- 新闻动态 -->
+    <section class="news" id="news">
+        <h2 class="news-title">新闻动态</h2>
+        <div class="title-line"></div>
+        <div class="news-container">
+            <div class="news-slider">
+                <div class="news-slide">
+                    <div class="news-image">
+                        <img src="image/a.png" alt="新闻动态1">
+                    </div>
+                </div>
+                <div class="news-slide">
+                    <div class="news-image">
+                        <img src="image/b.png" alt="新闻动态2">
+                    </div>
+                </div>
+                <div class="news-slide">
+                    <div class="news-image">
+                        <img src="image/c.png" alt="新闻动态3">
+                    </div>
+                </div>
+                <div class="news-slide">
+                    <div class="news-image">
+                        <img src="image/d.png" alt="新闻动态4">
+                    </div>
+                </div>
+                <div class="news-slide">
+                    <div class="news-image">
+                        <img src="image/e.png" alt="新闻动态5">
+                    </div>
+                </div>
+                <div class="news-slide">
+                    <div class="news-image">
+                        <img src="image/公司1.png" alt="新闻动态6">
+                    </div>
+                </div>
+            </div>
+            <div class="news-arrow news-prev">&#10094;</div>
+            <div class="news-arrow news-next">&#10095;</div>
+        </div>
+    </section>
+
     <!-- 联系我们 -->
     <section class="contact" id="contact">
         <div class="contact-content">
             <div class="contact-info">
                 <h2>联系我们</h2>
-                <p>电话：18172885497</p>
-                <p>邮箱：2865666343@qq.com</p>
+                <p>电话：13157120577</p>
+                <p>邮箱：329026106@qq.com</p>
                 <p>地址：浙江省湖州市南浔区</p>
                 <p>工作时间：周一至周五 9:00-18:00</p>
             </div>
-            <div class="contact-qr">
-                <div class="qr-code">
-                    微信公众号二维码
+            <div class="contact-douyin">
+                <div class="douyin-qr">
+                    <img src="image/douyin_qr.png" alt="抖音账号二维码">
+                </div>
+                <div class="douyin-text">
+                    关注我们的抖音账号
                 </div>
             </div>
         </div>
@@ -641,70 +866,59 @@
 
     <!-- 页脚 -->
     <footer>
-        <p>版权所有 © 2025 遥测天地公司 保留所有权利</p>
+        <p>版权所有 © 2025 遥策庄园公司 保留所有权利</p>
     </footer>
 
     <script>
-        // 修复轮播图左右切换逻辑：仅通过transform控制滑动，取消display:none
         document.addEventListener('DOMContentLoaded', function() {
             // 首页轮播图核心逻辑
             let currentSlide = 0;
-            const slidesContainer = document.querySelector('.slides'); // 轮播容器
+            const slidesContainer = document.querySelector('.slides');
             const slides = document.querySelectorAll('.slide');
             const controls = document.querySelectorAll('.slider-control');
-            const totalSlides = slides.length; // 总轮播图数量（3张）
+            const totalSlides = slides.length;
             
-            // 切换轮播图：通过改变容器的transform偏移量实现滑动
             function showSlide(n) {
-                // 计算当前索引（确保循环切换：0→1→2→0）
                 currentSlide = (n + totalSlides) % totalSlides;
-                // 每张图占20%宽度，偏移量 = -currentSlide * 20%
                 slidesContainer.style.transform = `translateX(-${currentSlide * 20}%)`;
-                // 更新指示器active状态
                 controls.forEach((control, index) => {
                     control.classList.toggle('active', index === currentSlide);
                 });
             }
             
-            // 自动轮播（3秒切换一次）
             let slideInterval = setInterval(() => {
                 showSlide(currentSlide + 1);
             }, 3000);
             
-            // 左箭头点击：切换到上一张
             document.querySelector('.prev').addEventListener('click', () => {
-                clearInterval(slideInterval); // 清除原有定时器
-                showSlide(currentSlide - 1); // 上一张
-                // 重启定时器
+                clearInterval(slideInterval);
+                showSlide(currentSlide - 1);
                 slideInterval = setInterval(() => {
                     showSlide(currentSlide + 1);
                 }, 3000);
             });
             
-            // 右箭头点击：切换到下一张
             document.querySelector('.next').addEventListener('click', () => {
                 clearInterval(slideInterval);
-                showSlide(currentSlide + 1); // 下一张
+                showSlide(currentSlide + 1);
                 slideInterval = setInterval(() => {
                     showSlide(currentSlide + 1);
                 }, 3000);
             });
             
-            // 指示器点击：切换到对应图片
             controls.forEach((control, index) => {
                 control.addEventListener('click', () => {
                     clearInterval(slideInterval);
-                    showSlide(index); // 切换到指定索引的图片
+                    showSlide(index);
                     slideInterval = setInterval(() => {
                         showSlide(currentSlide + 1);
                     }, 3000);
                 });
             });
             
-            // 初始化：显示第一张图
             showSlide(0);
             
-            // 业务切换功能（不变）
+            // 业务切换功能
             const businessTabs = document.querySelectorAll('.business-tab');
             const businessSlides = document.querySelectorAll('.business-slide');
             
@@ -718,7 +932,7 @@
                 });
             });
             
-            // 产品轮播功能（不变）
+            // 产品轮播功能
             let currentProductGroup = 0;
             const productGroups = document.querySelectorAll('.product-group');
             const totalProductGroups = productGroups.length;
@@ -739,6 +953,30 @@
             setInterval(() => {
                 showProductGroup(currentProductGroup + 1);
             }, 6000);
+            
+            // 新闻动态轮播功能
+            let currentNewsSlide = 0;
+            const newsSlides = document.querySelectorAll('.news-slide');
+            const totalNewsSlides = newsSlides.length;
+            const newsSlider = document.querySelector('.news-slider');
+            
+            function showNewsSlide(n) {
+                currentNewsSlide = (n + totalNewsSlides) % totalNewsSlides;
+                // 每张新闻图片占33.333%宽度，所以偏移量 = -currentNewsSlide * 33.333%
+                newsSlider.style.transform = `translateX(-${currentNewsSlide * 33.333}%)`;
+            }
+            
+            document.querySelector('.news-prev').addEventListener('click', () => {
+                showNewsSlide(currentNewsSlide - 1);
+            });
+            
+            document.querySelector('.news-next').addEventListener('click', () => {
+                showNewsSlide(currentNewsSlide + 1);
+            });
+            
+            setInterval(() => {
+                showNewsSlide(currentNewsSlide + 1);
+            }, 5000);
         });
     </script>
 </body>
